@@ -1,23 +1,17 @@
 const express = require('express');
 const cors = require ('cors');
-const morgan = require('morgan');
-const mainRouter = require('./routes/mainRouter.js');
-//const jwt = require('jsonwebtoken')
-const keys = require('../src/../settings/keys.js')
+const mainRouter = require('./src/routes/mainRouter');
 
-
+const PORT = 3001;
 
 const app = express();
-app.set('key', keys.key) //hacemos referencia a key que esta en settings
-
 app.use(cors());
-
-app.use(morgan('dev'));
-
 app.use(express.json());
-
 app.use(mainRouter);
 
+app.listen(PORT, ()=>{
+    console.log(`Server active on port ${PORT}`);
+})
 
 module.exports = app;
 
